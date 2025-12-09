@@ -77,49 +77,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to set day filter
   function setDayFilter(day) {
     currentDay = day;
-
-    // Update active class
-    dayFilters.forEach((btn) => {
-      if (btn.dataset.day === day) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
-
+    setActiveFilter(dayFilters, 'day', day);
     fetchActivities();
   }
 
   // Function to set time range filter
   function setTimeRangeFilter(timeRange) {
     currentTimeRange = timeRange;
-
-    // Update active class
-    timeFilters.forEach((btn) => {
-      if (btn.dataset.time === timeRange) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
-
+    setActiveFilter(timeFilters, 'time', timeRange);
     fetchActivities();
   }
 
   // Function to set difficulty filter
   function setDifficultyFilter(difficulty) {
     currentDifficulty = difficulty;
+    setActiveFilter(difficultyFilters, 'difficulty', difficulty);
+    fetchActivities();
+  }
 
-    // Update active class
-    difficultyFilters.forEach((btn) => {
-      if (btn.dataset.difficulty === difficulty) {
+  // Helper function to set active class on filter buttons
+  function setActiveFilter(filterButtons, dataAttribute, value) {
+    filterButtons.forEach((btn) => {
+      if (btn.dataset[dataAttribute] === value) {
         btn.classList.add("active");
       } else {
         btn.classList.remove("active");
       }
     });
-
-    fetchActivities();
   }
 
   // Check if user is already logged in (from localStorage)
