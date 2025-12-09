@@ -401,7 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Handle difficulty filter
-      if (currentDifficulty) {
+      if (currentDifficulty !== "") {
         queryParams.push(`difficulty=${encodeURIComponent(currentDifficulty)}`);
       }
 
