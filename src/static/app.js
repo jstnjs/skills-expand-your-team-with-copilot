@@ -10,8 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Dark mode toggle elements
   const themeToggle = document.getElementById("theme-toggle");
+  
+  // Check if theme toggle exists before accessing its children
+  if (!themeToggle) {
+    console.error("Theme toggle button not found");
+    return;
+  }
+  
   const themeIcon = themeToggle.querySelector(".theme-icon");
   const themeText = themeToggle.querySelector("span:last-child");
+  
+  if (!themeIcon || !themeText) {
+    console.error("Theme toggle icon or text not found");
+    return;
+  }
 
   // Search and filter elements
   const searchInput = document.getElementById("activity-search");
@@ -58,6 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
       enableDarkMode();
+    } else {
+      // Explicitly set light mode as default
+      disableDarkMode();
     }
   }
 
